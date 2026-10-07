@@ -1,0 +1,89 @@
+<h1>{{ esEdicion() ? 'Editar Cliente' : 'Nuevo Cliente' }}</h1>
+
+@if (errorMsg()) {
+  <p class="error">{{ errorMsg() }}</p>
+}
+
+<form [formGroup]="form" (ngSubmit)="guardar()" class="form">
+  <div class="field">
+    <label>Nombre</label>
+    <input formControlName="nombre" />
+    @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+      <span class="field-error">El nombre es obligatorio</span>
+    }
+  </div>
+
+  <div class="field">
+    <label>Género</label>
+    <select formControlName="genero">
+      <option value="">Seleccione...</option>
+      <option value="M">Masculino</option>
+      <option value="F">Femenino</option>
+    </select>
+    @if (form.get('genero')?.invalid && form.get('genero')?.touched) {
+      <span class="field-error">El género es obligatorio</span>
+    }
+  </div>
+
+  <div class="field">
+    <label>Edad</label>
+    <input type="number" formControlName="edad" />
+    @if (form.get('edad')?.invalid && form.get('edad')?.touched) {
+      <span class="field-error">Debe ser mayor de edad</span>
+    }
+  </div>
+
+  <div class="field">
+    <label>Identificación</label>
+    <input formControlName="identificacion" />
+    @if (form.get('identificacion')?.invalid && form.get('identificacion')?.touched) {
+      <span class="field-error">La identificación es obligatoria</span>
+    }
+  </div>
+
+  <div class="field">
+    <label>Dirección</label>
+    <input formControlName="direccion" />
+    @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {
+      <span class="field-error">La dirección es obligatoria</span>
+    }
+  </div>
+
+  <div class="field">
+    <label>Teléfono</label>
+    <input formControlName="telefono" />
+    @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
+      <span class="field-error">El teléfono es obligatorio</span>
+    }
+  </div>
+
+  <div class="field">
+    <label>Cliente ID</label>
+    <input formControlName="clienteId" [readonly]="esEdicion()" />
+    @if (form.get('clienteId')?.invalid && form.get('clienteId')?.touched) {
+      <span class="field-error">El Cliente ID es obligatorio</span>
+    }
+  </div>
+
+  @if (!esEdicion()) {
+    <div class="field">
+      <label>Contraseña</label>
+      <input type="password" formControlName="contrasena" />
+      @if (form.get('contrasena')?.invalid && form.get('contrasena')?.touched) {
+        <span class="field-error">La contraseña es obligatoria</span>
+      }
+    </div>
+
+  }
+
+  <div class="field">
+    <label class="checkbox-label">
+      <input type="checkbox" formControlName="estado" /> Activo
+    </label>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="form.invalid">Guardar</button>
+    <button type="button" class="secondary" (click)="cancelar()">Cancelar</button>
+  </div>
+</form>

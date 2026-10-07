@@ -1,0 +1,50 @@
+<h1>Movimientos</h1>
+
+<div class="row">
+  <div class="filter-row">
+    <input
+      type="text"
+      [(ngModel)]="numeroCuenta"
+      placeholder="Buscar por número de cuenta..."
+    />
+    <button (click)="buscar()">Buscar</button>
+  </div>
+  <button routerLink="/movimientos/nuevo">+ Nuevo Movimiento</button>
+</div>
+
+@if (errorMsg()) {
+  <p class="error">{{ errorMsg() }}</p>
+}
+
+@if (consultado()) {
+  <table class="data-table">
+    <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Tipo</th>
+      <th>Valor</th>
+      <th>Saldo Disponible</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (m of movimientos(); track m.id) {
+        <tr>
+          <td>{{ m.fecha }}</td>
+          <td>
+                <span class="badge" [class.badge-active]="m.tipoMovimiento === 'CREDITO'" [class.badge-inactive]="m.tipoMovimiento === 'DEBITO'">
+                  {{ m.tipoMovimiento }}
+                </span>
+          </td>
+          <td>{{ m.valor | number:'1.2-2' }}</td>
+          <td>{{ m.saldoDisponible | number:'1.2-2' }}</td>
+          <td>
+            <button class="danger" (click)="eliminar(m.id!)">Eliminar</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr><td colspan="5" class="empty">No hay movimientos para esta cuenta</td></tr>
+      }
+    </tbody>
+  </table>
+}

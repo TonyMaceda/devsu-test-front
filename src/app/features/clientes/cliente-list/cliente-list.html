@@ -1,0 +1,49 @@
+<h1>Clientes</h1>
+
+<div class="row">
+  <input
+    class="search-input"
+    [(ngModel)]="busqueda"
+    (ngModelChange)="buscar()"
+    placeholder="Buscar por nombre..."
+  />
+  <button routerLink="/clientes/nuevo">+ Nuevo Cliente</button>
+</div>
+
+@if (errorMsg()) {
+  <p class="error">{{ errorMsg() }}</p>
+}
+
+<table class="data-table">
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Identificación</th>
+    <th>Cliente ID</th>
+    <th>Teléfono</th>
+    <th>Estado</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (cliente of clientes(); track cliente.id) {
+      <tr>
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.identificacion }}</td>
+        <td>{{ cliente.clienteId }}</td>
+        <td>{{ cliente.telefono }}</td>
+        <td>
+              <span class="badge" [class.badge-active]="cliente.estado" [class.badge-inactive]="!cliente.estado">
+                {{ cliente.estado ? 'Activo' : 'Inactivo' }}
+              </span>
+        </td>
+        <td class="actions">
+          <button class="secondary" (click)="editar(cliente.id!)">Editar</button>
+          <button class="danger" (click)="eliminar(cliente.id!)">Eliminar</button>
+        </td>
+      </tr>
+    } @empty {
+      <tr><td colspan="6" class="empty">No hay clientes registrados</td></tr>
+    }
+  </tbody>
+</table>

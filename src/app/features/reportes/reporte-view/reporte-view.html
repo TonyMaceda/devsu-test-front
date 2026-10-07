@@ -1,0 +1,51 @@
+<h1>Reportes — Estado de Cuenta</h1>
+
+@if (errorMsg()) {
+  <p class="error">{{ errorMsg() }}</p>
+}
+
+<div class="filters">
+  <div class="field">
+    <label>Cliente ID</label>
+    <input [(ngModel)]="clienteId" placeholder="Ej: CLI001" />
+  </div>
+  <div class="field">
+    <label>Fecha Inicio</label>
+    <input type="date" [(ngModel)]="fechaInicio" />
+  </div>
+  <div class="field">
+    <label>Fecha Fin</label>
+    <input type="date" [(ngModel)]="fechaFin" />
+  </div>
+  <div class="field actions-field">
+    <button (click)="consultar()">Consultar</button>
+    <button class="secondary" (click)="descargarPdf()" [disabled]="!reporte()">Descargar PDF</button>
+  </div>
+</div>
+
+@if (reporte()) {
+  <table class="data-table">
+    <thead>
+    <tr>
+      <th>N° Cuenta</th>
+      <th>Tipo</th>
+      <th>Saldo</th>
+      <th>Total Créditos</th>
+      <th>Total Débitos</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (c of reporte()!.cuentas; track c.numeroCuenta) {
+        <tr>
+          <td>{{ c.numeroCuenta }}</td>
+          <td>{{ c.tipoCuenta }}</td>
+          <td>{{ c.saldo | number:'1.2-2' }}</td>
+          <td class="credito">{{ c.totalCreditos | number:'1.2-2' }}</td>
+          <td class="debito">{{ c.totalDebitos | number:'1.2-2' }}</td>
+        </tr>
+      } @empty {
+        <tr><td colspan="5" class="empty">Este cliente no tiene cuentas en el rango consultado</td></tr>
+      }
+    </tbody>
+  </table>
+}

@@ -1,0 +1,43 @@
+<h1>Nuevo Movimiento</h1>
+
+@if (errorMsg()) {
+  <p class="error">{{ errorMsg() }}</p>
+}
+@if (successMsg()) {
+  <p class="success">{{ successMsg() }}</p>
+}
+
+<form [formGroup]="form" (ngSubmit)="registrar()" class="form">
+  <div class="field">
+    <label>Número de Cuenta</label>
+    <input type="text" formControlName="numeroCuenta" />
+    @if (form.get('numeroCuenta')?.invalid && form.get('numeroCuenta')?.touched) {
+      <span class="field-error">El número de cuenta es obligatorio</span>
+    }
+  </div>
+
+  <div class="field">
+    <label>Tipo de Movimiento</label>
+    <select formControlName="tipoMovimiento">
+      <option value="">Seleccione...</option>
+      <option value="CREDITO">Crédito (depósito)</option>
+      <option value="DEBITO">Débito (retiro)</option>
+    </select>
+    @if (form.get('tipoMovimiento')?.invalid && form.get('tipoMovimiento')?.touched) {
+      <span class="field-error">El tipo de movimiento es obligatorio</span>
+    }
+  </div>
+
+  <div class="field">
+    <label>Valor</label>
+    <input type="number" step="0.01" formControlName="valor" />
+    @if (form.get('valor')?.invalid && form.get('valor')?.touched) {
+      <span class="field-error">El valor debe ser mayor a cero</span>
+    }
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="form.invalid">Registrar</button>
+    <button type="button" class="secondary" (click)="cancelar()">Cancelar</button>
+  </div>
+</form>

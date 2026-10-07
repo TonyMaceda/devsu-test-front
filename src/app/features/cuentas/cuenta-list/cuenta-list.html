@@ -1,0 +1,49 @@
+<h1>Cuentas</h1>
+
+<div class="row">
+  <input
+    class="search-input"
+    [(ngModel)]="busqueda"
+    (ngModelChange)="buscar()"
+    placeholder="Buscar por Cliente ID..."
+  />
+  <button routerLink="/cuentas/nueva">+ Nueva Cuenta</button>
+</div>
+
+@if (errorMsg()) {
+  <p class="error">{{ errorMsg() }}</p>
+}
+
+<table class="data-table">
+  <thead>
+  <tr>
+    <th>Número Cuenta</th>
+    <th>Tipo</th>
+    <th>Saldo</th>
+    <th>Cliente ID</th>
+    <th>Estado</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (cuenta of cuentas(); track cuenta.numeroCuenta) {
+      <tr>
+        <td>{{ cuenta.numeroCuenta }}</td>
+        <td>{{ cuenta.tipoCuenta }}</td>
+        <td>{{ cuenta.saldoInicial | number:'1.2-2' }}</td>
+        <td>{{ cuenta.clienteId }}</td>
+        <td>
+              <span class="badge" [class.badge-active]="cuenta.estado" [class.badge-inactive]="!cuenta.estado">
+                {{ cuenta.estado ? 'Activa' : 'Inactiva' }}
+              </span>
+        </td>
+        <td class="actions">
+          <button class="secondary" (click)="editar(cuenta.numeroCuenta)">Editar</button>
+          <button class="danger" (click)="eliminar(cuenta.numeroCuenta)">Eliminar</button>
+        </td>
+      </tr>
+    } @empty {
+      <tr><td colspan="6" class="empty">No hay cuentas registradas</td></tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,10 @@
+.row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.filter-row { display: flex; gap: 10px; margin-bottom: 20px; }
+.filter-row input { width: 220px; }
+.data-table { width: 100%; border-collapse: collapse; background: white; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.data-table th { background: #eef1f7; text-align: left; padding: 12px; font-size: 13px; color: #44506b; }
+.data-table td { padding: 12px; border-top: 1px solid #f0f0f0; font-size: 14px; }
+.empty { text-align: center; color: #888; padding: 24px; }
+.badge { padding: 3px 10px; border-radius: 12px; font-size: 12px; }
+.badge-active { background: #e6f7ea; color: #1e7e34; }
+.badge-inactive { background: #fdecea; color: #c0392b; }

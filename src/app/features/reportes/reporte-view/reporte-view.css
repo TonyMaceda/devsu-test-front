@@ -1,0 +1,10 @@
+.filters { display: flex; gap: 16px; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; }
+.field { display: flex; flex-direction: column; }
+.field label { font-size: 13px; color: #44506b; margin-bottom: 4px; }
+.actions-field { flex-direction: row; gap: 8px; }
+.data-table { width: 100%; border-collapse: collapse; background: white; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.data-table th { background: #eef1f7; text-align: left; padding: 12px; font-size: 13px; color: #44506b; }
+.data-table td { padding: 12px; border-top: 1px solid #f0f0f0; font-size: 14px; }
+.empty { text-align: center; color: #888; padding: 24px; }
+.credito { color: #1e7e34; }
+.debito { color: #c0392b; }
