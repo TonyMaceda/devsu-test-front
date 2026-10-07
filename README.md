@@ -38,11 +38,13 @@ This will compile your project and store the build artifacts in the `dist/` dire
 
 ## Running unit tests
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+To execute the Jest unit tests for the client, account, movement, and report features, run:
 
 ```bash
-ng test
+npm test
 ```
+
+The Jest configuration includes the services, forms, and lists for those features. Other areas can be added to `jest.config.cjs` as their tests are developed.
 
 ## Running end-to-end tests
 

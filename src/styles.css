@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: #f4f6f9;
+  color: #1a1a1a;
+}
+
+h1 {
+  font-size: 22px;
+  margin-bottom: 16px;
+  color: #1f3864;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  background: #1f3864;
+  color: white;
+  transition: background 0.15s ease;
+}
+
+button:hover {
+  background: #2e4d8a;
+}
+
+button:disabled {
+  background: #a9b4c7;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background: #e5e8ef;
+  color: #1f3864;
+}
+
+button.secondary:hover {
+  background: #d3d9e6;
+}
+
+button.danger {
+  background: #c0392b;
+}
+
+button.danger:hover {
+  background: #a93226;
+}
+
+input, select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #1f3864;
+}
+
+.error {
+  color: #c0392b;
+  background: #fdecea;
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.success {
+  color: #1e7e34;
+  background: #e6f7ea;
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.field-error {
+  color: #c0392b;
+  font-size: 12px;
+  display: block;
+  margin-top: 2px;
+}
